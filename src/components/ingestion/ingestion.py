@@ -27,7 +27,9 @@ class ZipDataIngestor(DataIngestor):
 
     def ingest(self, file_path: str, prefer_filename: str = None) -> pd.DataFrame:
         file_path = Path(file_path)
-        extract_dir = Path("../../../data/raw/extracted")
+
+        # Résout toujours vers le dossier data/raw/extracted depuis l'emplacement du script
+        extract_dir = (Path(__file__).resolve().parent / "../../../data/raw/extracted").resolve()
         extract_dir.mkdir(parents=True, exist_ok=True)
 
         logger.info(f"Start ingesting data from: {file_path}")
